@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+
+dotenv.config();
 
 const connect = () => {
   mongoose
-    .connect(
-      "mongodb+srv://thevijeeth:CXWFdRfYrEwTLpnG@express-mongo.rmjca.mongodb.net/?retryWrites=true&w=majority&appName=express-mongo",
-      {
-        dbName: "todo_memo",
-      },
-    )
+    .connect(process.env.MONGODB_URI, {
+      dbName: process.env.DB_NAME,
+    })
     .then(() => console.log("Connection to MongoDB succeeded."))
     .catch((err) => console.log(`MongoDB connection failed. ${err}`));
 };
